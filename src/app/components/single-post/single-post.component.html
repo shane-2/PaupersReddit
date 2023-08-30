@@ -1,5 +1,22 @@
 <div>
+    <a href="{{DisplayPost.data.url}}">
 <h2 style="margin: 10%; color: antiquewhite;"> <a>{{DisplayPost.data.title}}</a></h2>
+<img src="{{DisplayPost.data.thumbnail}}" alt=""/>
+
+<video
+    *ngIf="DisplayPost.data.media?.reddit_video?.fallback_url != null"
+    width="320"
+    height="240"
+    controls
+  >
+    <source
+      src="{{ DisplayPost.data.media?.reddit_video?.fallback_url }}"
+      type="video/mp4"
+    />
+    Your browser does not support the video tag.
+  </video>
+</a>
+
 <h3 style="margin: 2%; color: antiquewhite;">Score: {{DisplayPost.data.score}}  </h3>
 <br/>
 <p style="margin: 2%; color: antiquewhite;"> Awards: {{DisplayPost.data.total_awards_received}} Subreddit: {{DisplayPost.data.subreddit}}</p>

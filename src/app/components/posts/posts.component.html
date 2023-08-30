@@ -1,3 +1,8 @@
+<input type="text" [(ngModel)]="subreddit" />
+<button (click)="CallApi()">Search Subreddit</button>
+<p>{{status}}</p>
+
+
 <h1 style="color: bisque;">Welcome to Reddit!</h1>
 
 <app-single-post *ngFor="let p of Posts.data.children" [DisplayPost]="p"></app-single-post>

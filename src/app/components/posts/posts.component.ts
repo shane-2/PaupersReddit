@@ -10,17 +10,26 @@ import { RedditService } from 'src/app/services/reddit.service';
 })
 export class PostsComponent {
   Posts: Aww = {} as Aww;
+subreddit:string="aww";
+status:string ="";
 
   constructor(private awwPosts:RedditService){}
 
   ngOnInit(){
+    this.CallApi();
+  }
 
-    this.awwPosts.getAll().subscribe((response:Aww)=>{      
-      console.log(response);
-      //saving response in a variable
-      this.Posts = response;
-    } );
-
-
+    CallApi():void{
+      this.status="loading";
+      this.awwPosts.getAll(this.subreddit).subscribe((response:Aww)=>{      
+        
+        //saving response in a variable
+        this.Posts = response;
+        this.Posts.data.children.splice(10); //this line cuts off to ten posts
+        this.status="";
+      }, (err)=>{
+        
+        this.status = "Couldn't find this Subreddit"
+      });
 }
 }

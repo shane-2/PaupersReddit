@@ -11,11 +11,11 @@ export class RedditService {
   constructor(private http: HttpClient) {}
 
   url: string =
-    ' https://www.reddit.com/r/aww/.json';
+    ' https://www.reddit.com/r/';
 
   //api call method
-  getAll(): Observable<Aww> {
-    return this.http.get<Aww>(this.url);
+  getAll(sub: string): Observable<Aww> {
+    return this.http.get<Aww>(`${this.url}${sub}/.json`);
   }
 
 }
